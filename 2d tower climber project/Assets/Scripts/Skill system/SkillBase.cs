@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
 public abstract class SkillBase : ScriptableObject
 {
     public new string name;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Skills/Movement/Dash")]
 public class Dash : MovementSkill
 {
     [SerializeField] int dashPower = 10;

@@ -8,7 +8,6 @@ public class StatModifier
 
     public StatModifier()
     {
-        this.value = value;
     }
     public StatModifier(int value)
     {

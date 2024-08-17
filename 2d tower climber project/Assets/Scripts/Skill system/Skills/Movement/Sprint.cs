@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Skills/Movement/Sprint")]
 public class Sprint : MovementSkill
 {
     [SerializeField] StatModifier modifier;

@@ -667,12 +667,12 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.85
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 89f1a115acc106a4dbf7943685eba9e0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -711,14 +711,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8d1cae728cf534d9dc943d2507cb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: 0, y: 0}
   jumpForce: 10
   isGrounded: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  sprintKey: 304
-  movementSkill: {fileID: 11400000, guid: bbae9dd87bc92ba4c9d544dc5b859434, type: 2}
+  movementKey: 304
+  movementSkill: {fileID: 11400000, guid: 6e3a160f761c42340954fefee11a7086, type: 2}
+  airKey: 32
+  airSkill: {fileID: 11400000, guid: e530b087badb1524ca8cf07c014a5bf5, type: 2}
 --- !u!114 &1784834300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,30 +733,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Strength:
+    finalValue: 0
     baseValue: 10
     modifiers:
     - value: 5
-    finalValue: 0
   Dexterity:
+    finalValue: 0
     baseValue: 10
     modifiers: []
-    finalValue: 0
   Constitution:
+    finalValue: 0
     baseValue: 10
     modifiers: []
-    finalValue: 0
   Mind:
+    finalValue: 0
     baseValue: 10
     modifiers: []
-    finalValue: 0
   Soul:
+    finalValue: 0
     baseValue: 10
     modifiers: []
-    finalValue: 0
   Speed:
+    finalValue: 0
     baseValue: 10
     modifiers: []
-    finalValue: 0
 --- !u!1 &2090230048
 GameObject:
   m_ObjectHideFlags: 0

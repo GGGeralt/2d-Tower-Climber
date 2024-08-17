@@ -5,9 +5,10 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
+    [SerializeField] int finalValue;
+    [Space]
     [SerializeField] int baseValue;
     [SerializeField] List<StatModifier> modifiers;
-    [SerializeField] int finalValue;
 
     public int Value
     {

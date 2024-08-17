@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362614e85d1bc714289a4e8c461591cf, type: 3}
-  m_Name: basic dash
+  m_Script: {fileID: 11500000, guid: 2beb7ecf6c76d9044aa3ed9a908ea84f, type: 3}
+  m_Name: New Sprint
   m_EditorClassIdentifier: 
   name: 
   Activate:
@@ -19,4 +19,6 @@ MonoBehaviour:
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
-  dashPower: 10
+  a: 0
+  modifier:
+    value: 10

@@ -5,16 +5,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigid2d;
 
     Vector2 movement;
-    bool jump;
+    float horizontal;
 
     [SerializeField] int jumpForce;
 
     [SerializeField] bool isGrounded = true;
     [SerializeField] LayerMask groundMask;
-    float horizontal;
 
-    [SerializeField] KeyCode sprintKey;
+    [SerializeField] KeyCode movementKey;
     [SerializeField] MovementSkill movementSkill;
+
+    [SerializeField] KeyCode airKey;
+    [SerializeField] AirSkill airSkill;
 
     private void Awake()
     {
@@ -26,37 +28,31 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         movement = new Vector2(horizontal, rigid2d.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jump = true;
-        }
-
-        if (Input.GetKeyDown(sprintKey))
+        if (Input.GetKeyDown(movementKey))
         {
             movementSkill.Activate?.Invoke(gameObject);
-            print(movementSkill.name + " activated");
         }
-
-        if (Input.GetKeyUp(sprintKey))
+        if (Input.GetKeyUp(movementKey))
         {
             movementSkill.Deactivate?.Invoke(gameObject);
-            print(movementSkill.name + " deactivated");
+        }
+
+        if (Input.GetKeyDown(airKey))
+        {
+            airSkill.Activate?.Invoke(gameObject);
+        }
+        if (Input.GetKeyUp(airKey))
+        {
+            airSkill.Deactivate?.Invoke(gameObject);
         }
     }
 
+    //TODO: repair movement to work with MovePosition
+    // reapir gravity, that allows also jumping etc
+    //change skills to work with new movement
     private void FixedUpdate()
     {
-        //rigid2d.velocity = new Vector2(horizontal * GetComponent<Character>().Speed.Value * 100 * Time.fixedDeltaTime, rigid2d.velocity.y);
-        if (jump)
-        {
-            Jump();
-            jump = false;
-        }
-
-    }
-
-    public void Jump()
-    {
-        rigid2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        //rigid2d.AddForce(new Vector2(horizontal * GetComponent<Character>().Speed.Value, rigid2d.velocity.y));
+        rigid2d.MovePosition((Vector2)transform.position + new Vector2(horizontal * GetComponent<Character>().Speed.Value * Time.fixedDeltaTime, 0));
     }
 }
