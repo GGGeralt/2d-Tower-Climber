@@ -6,7 +6,11 @@ public class Jump : AirSkill
     [SerializeField] int jumpForce;
     protected override void ActivateSkill(GameObject caster)
     {
-        caster.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (caster.GetComponent<PlayerMovement>().GetIsGrounded())
+        {
+            Rigidbody2D r2d = caster.GetComponent<Rigidbody2D>();
+            r2d.velocity = new Vector2(r2d.velocity.x, jumpForce);
+        }
     }
 
     protected override void DeactivateSkill(GameObject caster)

@@ -19,6 +19,5 @@ MonoBehaviour:
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
-  a: 0
   modifier:
-    value: 10
+    value: 25

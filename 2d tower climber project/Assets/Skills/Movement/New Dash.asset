@@ -19,5 +19,6 @@ MonoBehaviour:
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
-  a: 0
-  dashPower: 10
+  dashStrength: 50
+  dashDuration: 0.125
+  dashCooldown: 1

@@ -1,58 +1,112 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigid2d;
+    Rigidbody2D rigid2d;
+    Character character;
 
-    Vector2 movement;
     float horizontal;
+    [SerializeField] float lastMovement;
 
-    [SerializeField] int jumpForce;
+    [SerializeField] bool canMove = true;
+    [SerializeField] bool isDashing = false;
+    [SerializeField] int dashStrength;
 
-    [SerializeField] bool isGrounded = true;
+    [SerializeField] bool isGrounded = false;
     [SerializeField] LayerMask groundMask;
-
+    [Space]
+    [Header("Keys")]
     [SerializeField] KeyCode movementKey;
-    [SerializeField] MovementSkill movementSkill;
-
     [SerializeField] KeyCode airKey;
-    [SerializeField] AirSkill airSkill;
 
+
+    #region UnityFunctions
     private void Awake()
     {
         rigid2d = GetComponent<Rigidbody2D>();
+        character = GetComponent<Character>();
     }
 
     private void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        movement = new Vector2(horizontal, rigid2d.velocity.y);
+        GetInput();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+    #endregion
+
+    private void GetInput()
+    {
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, groundMask);
+
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (horizontal > 0)
+        {
+            lastMovement = 1;
+        }
+        else if (horizontal < 0)
+        {
+            lastMovement = -1;
+        }
 
         if (Input.GetKeyDown(movementKey))
         {
-            movementSkill.Activate?.Invoke(gameObject);
+            character.movementSkill.Activate?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(movementKey))
         {
-            movementSkill.Deactivate?.Invoke(gameObject);
+            character.movementSkill.Deactivate?.Invoke(gameObject);
         }
 
         if (Input.GetKeyDown(airKey))
         {
-            airSkill.Activate?.Invoke(gameObject);
+            character.airSkill.Activate?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(airKey))
         {
-            airSkill.Deactivate?.Invoke(gameObject);
+            character.airSkill.Deactivate?.Invoke(gameObject);
         }
     }
 
-    //TODO: repair movement to work with MovePosition
-    // reapir gravity, that allows also jumping etc
-    //change skills to work with new movement
-    private void FixedUpdate()
+
+    private void Move()
     {
-        //rigid2d.AddForce(new Vector2(horizontal * GetComponent<Character>().Speed.Value, rigid2d.velocity.y));
-        rigid2d.MovePosition((Vector2)transform.position + new Vector2(horizontal * GetComponent<Character>().Speed.Value * Time.fixedDeltaTime, 0));
+        if (canMove)
+        {
+            rigid2d.velocity = new Vector2(horizontal * GetComponent<Character>().Speed.Value, rigid2d.velocity.y);
+        }
+        else if (isDashing)
+        {
+            rigid2d.velocity = new Vector2(dashStrength * lastMovement, rigid2d.velocity.y);
+        }
+    }
+
+    public IEnumerator Dash(float dashDuration, int dashStrength)
+    {
+        isDashing = true;
+        canMove = false;
+
+        this.dashStrength = dashStrength;
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+        canMove = true;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.down * 0.7f);
+    }
+
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
     }
 }
