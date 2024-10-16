@@ -1,5 +1,9 @@
+using System;
+
+[Serializable]
 public class SkillCost
 {
-    string cost;
-
+    public StatEnum stat;
+    public float value;
+    public bool inTime;
 }

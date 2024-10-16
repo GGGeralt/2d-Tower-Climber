@@ -21,15 +21,24 @@ public class PlayerUI : MonoBehaviour
         character = Character.Instance;
 
         healthSlider.maxValue = character.GetHealth().maxValue.Value;
-        healthSlider.value = character.GetHealth().maxValue.Value;
-        healthText.text = $"{character.GetHealth().currentValue}/{character.GetHealth().maxValue.Value}";
-
         staminaSlider.maxValue = character.GetStamina().maxValue.Value;
-        staminaSlider.value = character.GetStamina().maxValue.Value;
-        staminaText.text = $"{character.GetStamina().currentValue}/{character.GetStamina().maxValue.Value}";
-
         manaSlider.maxValue = character.GetMana().maxValue.Value;
-        manaSlider.value = character.GetMana().maxValue.Value;
+
+
+        character.GetHealth().OnValueChanged.AddListener(UpdateBars);
+        character.GetStamina().OnValueChanged.AddListener(UpdateBars);
+        character.GetMana().OnValueChanged.AddListener(UpdateBars);
+    }
+
+    private void UpdateBars()
+    {
+        healthSlider.value = character.GetHealth().currentValue;
+        staminaSlider.value = character.GetStamina().currentValue;
+        manaSlider.value = character.GetMana().currentValue;
+
+        healthText.text = $"{character.GetHealth().currentValue}/{character.GetHealth().maxValue.Value}";
+        staminaText.text = $"{character.GetStamina().currentValue}/{character.GetStamina().maxValue.Value}";
         manaText.text = $"{character.GetMana().currentValue}/{character.GetMana().maxValue.Value}";
+
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class ChangeableStat
@@ -13,7 +14,6 @@ public class ChangeableStat
 
     public ChangeableStat(int value)
     {
-        Debug.Log(value);
         maxValue = new Stat(value);
         currentValue = value;
     }
@@ -21,9 +21,13 @@ public class ChangeableStat
     public void Increase(float value)
     {
         currentValue = Mathf.Clamp(currentValue + value, 0, maxValue.Value);
+        OnValueChanged.Invoke();
     }
     public void Decrease(float value)
     {
         currentValue = Mathf.Clamp(currentValue - value, 0, maxValue.Value);
+        OnValueChanged.Invoke();
     }
+
+    public UnityEvent OnValueChanged;
 }

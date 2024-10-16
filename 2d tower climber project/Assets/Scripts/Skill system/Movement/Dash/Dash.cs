@@ -8,10 +8,13 @@ public class Dash : MovementSkill
     [SerializeField] float dashCooldown;
     protected override void ActivateSkill(GameObject caster)
     {
-        PlayerMovement movement = caster.GetComponent<PlayerMovement>();
+        PlayerController movement = caster.GetComponent<PlayerController>();
         movement.StartCoroutine(movement.Dash(dashDuration, dashStrength));
     }
 
+    protected override void HoldActiveSkill(GameObject caster)
+    {
+    }
     protected override void DeactivateSkill(GameObject caster)
     {
     }

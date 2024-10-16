@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2d;
     Character character;
@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     #region UnityFunctions
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         rigid2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
     }
@@ -54,9 +56,26 @@ public class PlayerMovement : MonoBehaviour
             lastMovement = -1;
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            character.GetAttackSkill().Activate?.Invoke(gameObject);
+        }
+        if (Input.GetMouseButton(0))
+        {
+            character.GetAttackSkill().HoldActive?.Invoke(gameObject);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            character.GetAttackSkill().Deactivate?.Invoke(gameObject);
+        }
+
         if (Input.GetKeyDown(movementKey))
         {
             character.GetMovementSkill().Activate?.Invoke(gameObject);
+        }
+        if (Input.GetKey(movementKey))
+        {
+            character.GetMovementSkill().HoldActive?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(movementKey))
         {
@@ -66,6 +85,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(airKey))
         {
             character.GetAirSkill().Activate?.Invoke(gameObject);
+        }
+        if (Input.GetKey(airKey))
+        {
+            character.GetAirSkill().HoldActive?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(airKey))
         {

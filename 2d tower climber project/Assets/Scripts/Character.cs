@@ -26,14 +26,12 @@ public class Character : MonoBehaviour
     [Space]
     [Header("Sub Stats")]
     [SerializeField] Stat speed;
-    [SerializeField] Stat healthRegen;
-    [SerializeField] Stat staminaRegen;
-    [SerializeField] Stat manaRegen;
     #endregion
 
     #region Skills
     [Space]
     [Header("Skills")]
+    [SerializeField] AttackSkill attackSkill;
     [SerializeField] MovementSkill movementSkill;
     [SerializeField] AirSkill airSkill;
     #endregion
@@ -56,12 +54,36 @@ public class Character : MonoBehaviour
 
     }
 
-
+    public void DecreaseStatValue(SkillCost cost)
+    {
+        float value = cost.value;
+        if (cost.inTime == true)
+        {
+            value = value * Time.deltaTime;
+        }
+        switch (cost.stat)
+        {
+            case StatEnum.Health:
+                health.Decrease(value);
+                break;
+            case StatEnum.Stamina:
+                stamina.Decrease(value);
+                break;
+            case StatEnum.Mana:
+                mana.Decrease(value);
+                break;
+        }
+    }
 
     #region get
     public Stat GetSpeed()
     {
         return speed;
+    }
+
+    public AttackSkill GetAttackSkill()
+    {
+        return attackSkill;
     }
 
     public MovementSkill GetMovementSkill()

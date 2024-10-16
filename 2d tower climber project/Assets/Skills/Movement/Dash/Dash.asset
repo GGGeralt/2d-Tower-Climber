@@ -10,15 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 362614e85d1bc714289a4e8c461591cf, type: 3}
-  m_Name: New Dash
+  m_Name: Dash
   m_EditorClassIdentifier: 
   name: 
   Activate:
     m_PersistentCalls:
       m_Calls: []
+  HoldActive:
+    m_PersistentCalls:
+      m_Calls: []
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
+  cost:
+    stat: 1
+    value: 0
+    inTime: 0
   dashStrength: 50
   dashDuration: 0.125
   dashCooldown: 1

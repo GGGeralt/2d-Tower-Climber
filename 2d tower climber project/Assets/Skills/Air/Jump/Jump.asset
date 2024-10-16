@@ -9,16 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80a0092b0797654084047b6c25556d2, type: 3}
-  m_Name: New Triple Jump
+  m_Script: {fileID: 11500000, guid: b0066b40e604c29478df63d9f4c95224, type: 3}
+  m_Name: Jump
   m_EditorClassIdentifier: 
   name: 
   Activate:
     m_PersistentCalls:
       m_Calls: []
+  HoldActive:
+    m_PersistentCalls:
+      m_Calls: []
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
+  cost:
+    stat: 1
+    value: 10
+    inTime: 0
   jumpForce: 5
-  maxJumpAmount: 3
-  actualJumpAmount: 0

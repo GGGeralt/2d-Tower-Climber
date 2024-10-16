@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d534ff3051aee7449befee532b6de01f, type: 3}
-  m_Name: New Double Jump
+  m_Script: {fileID: 11500000, guid: 4312434dd12ee0a45a7dd59a5ebf25c7, type: 3}
+  m_Name: ManaBolt
   m_EditorClassIdentifier: 
   name: 
   Activate:
     m_PersistentCalls:
       m_Calls: []
+  HoldActive:
+    m_PersistentCalls:
+      m_Calls: []
   Deactivate:
     m_PersistentCalls:
       m_Calls: []
-  jumpForce: 5
-  maxJumpAmount: 2
+  cost:
+    stat: 2
+    value: 10
+    inTime: 0

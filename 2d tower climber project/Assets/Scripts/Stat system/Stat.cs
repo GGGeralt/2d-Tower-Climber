@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatEnum
+{
+    Health,
+    Stamina,
+    Mana
+}
+
 [Serializable]
 public class Stat
 {

@@ -7,11 +7,25 @@ public class Sprint : MovementSkill
 
     protected override void ActivateSkill(GameObject caster)
     {
-        caster.GetComponent<Character>().GetSpeed().AddModifier(modifier);
+        if (Character.Instance.GetStamina().currentValue > 0)
+        {
+            caster.GetComponent<Character>().GetSpeed().AddModifier(modifier);
+        }
+    }
+    protected override void HoldActiveSkill(GameObject caster)
+    {
+        Character.Instance.DecreaseStatValue(cost);
+
+        if (Character.Instance.GetStamina().currentValue == 0)
+        {
+            caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
+        }
     }
 
     protected override void DeactivateSkill(GameObject caster)
     {
         caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
     }
+
+
 }

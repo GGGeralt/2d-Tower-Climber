@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Air/Double Jump")]
+[CreateAssetMenu(menuName = "Skills/Air/Jump/Double Jump")]
 public class DoubleJump : AirSkill
 {
     [SerializeField] int jumpForce;
@@ -8,7 +8,7 @@ public class DoubleJump : AirSkill
     [SerializeField] private int actualJumpAmount = 0;
     protected override void ActivateSkill(GameObject caster)
     {
-        if (caster.GetComponent<PlayerMovement>().GetIsGrounded() && actualJumpAmount >= 1)
+        if (caster.GetComponent<PlayerController>().GetIsGrounded() && actualJumpAmount >= 1)
         {
             actualJumpAmount = 0;
         }
@@ -20,6 +20,9 @@ public class DoubleJump : AirSkill
         }
     }
 
+    protected override void HoldActiveSkill(GameObject caster)
+    {
+    }
     protected override void DeactivateSkill(GameObject caster)
     {
     }
