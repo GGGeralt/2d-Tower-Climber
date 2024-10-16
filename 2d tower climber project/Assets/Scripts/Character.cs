@@ -6,6 +6,14 @@ public class Character : MonoBehaviour
 
     #region Main Stats
     [Space]
+    [Header("Changeable Stats")]
+    [SerializeField] ChangeableStat health = new ChangeableStat(100);
+    [SerializeField] ChangeableStat stamina = new ChangeableStat(100);
+    [SerializeField] ChangeableStat mana = new ChangeableStat(100);
+    #endregion
+
+    #region Main Stats
+    [Space]
     [Header("Main Stats")]
     [SerializeField] Stat Strength;
     [SerializeField] Stat Dexterity;
@@ -17,14 +25,17 @@ public class Character : MonoBehaviour
     #region Sub Stats
     [Space]
     [Header("Sub Stats")]
-    [SerializeField] public Stat Speed;
+    [SerializeField] Stat speed;
+    [SerializeField] Stat healthRegen;
+    [SerializeField] Stat staminaRegen;
+    [SerializeField] Stat manaRegen;
     #endregion
 
     #region Skills
     [Space]
     [Header("Skills")]
-    [SerializeField] public MovementSkill movementSkill;
-    [SerializeField] public AirSkill airSkill;
+    [SerializeField] MovementSkill movementSkill;
+    [SerializeField] AirSkill airSkill;
     #endregion
 
 
@@ -38,6 +49,44 @@ public class Character : MonoBehaviour
         {
             Instance = this;
         }
+
+        health.currentValue = health.maxValue.Value;
+        stamina.currentValue = stamina.maxValue.Value;
+        mana.currentValue = mana.maxValue.Value;
+
     }
 
+
+
+    #region get
+    public Stat GetSpeed()
+    {
+        return speed;
+    }
+
+    public MovementSkill GetMovementSkill()
+    {
+        return movementSkill;
+    }
+
+    public AirSkill GetAirSkill()
+    {
+        return airSkill;
+    }
+
+    public ChangeableStat GetHealth()
+    {
+        return health;
+    }
+    public ChangeableStat GetStamina()
+    {
+        return stamina;
+    }
+    public ChangeableStat GetMana()
+    {
+        return mana;
+    }
+
+
+    #endregion
 }

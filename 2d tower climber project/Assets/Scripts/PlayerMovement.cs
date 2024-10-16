@@ -56,29 +56,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(movementKey))
         {
-            character.movementSkill.Activate?.Invoke(gameObject);
+            character.GetMovementSkill().Activate?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(movementKey))
         {
-            character.movementSkill.Deactivate?.Invoke(gameObject);
+            character.GetMovementSkill().Deactivate?.Invoke(gameObject);
         }
 
         if (Input.GetKeyDown(airKey))
         {
-            character.airSkill.Activate?.Invoke(gameObject);
+            character.GetAirSkill().Activate?.Invoke(gameObject);
         }
         if (Input.GetKeyUp(airKey))
         {
-            character.airSkill.Deactivate?.Invoke(gameObject);
+            character.GetAirSkill().Deactivate?.Invoke(gameObject);
         }
     }
-
 
     private void Move()
     {
         if (canMove)
         {
-            rigid2d.velocity = new Vector2(horizontal * GetComponent<Character>().Speed.Value, rigid2d.velocity.y);
+            rigid2d.velocity = new Vector2(horizontal * character.GetSpeed().Value, rigid2d.velocity.y);
         }
         else if (isDashing)
         {
@@ -96,13 +95,6 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = false;
         canMove = true;
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.down * 0.7f);
     }
 
     public bool GetIsGrounded()

@@ -7,11 +7,11 @@ public class Sprint : MovementSkill
 
     protected override void ActivateSkill(GameObject caster)
     {
-        caster.GetComponent<Character>().Speed.AddModifier(modifier);
+        caster.GetComponent<Character>().GetSpeed().AddModifier(modifier);
     }
 
     protected override void DeactivateSkill(GameObject caster)
     {
-        caster.GetComponent<Character>().Speed.RemoveModifier(modifier);
+        caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
     }
 }

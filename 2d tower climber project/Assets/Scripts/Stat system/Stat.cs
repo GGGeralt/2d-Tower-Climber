@@ -5,10 +5,10 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
-    [SerializeField] int finalValue;
+    [SerializeField] private int finalValue;
     [Space]
-    [SerializeField] int baseValue;
-    [SerializeField] List<StatModifier> modifiers;
+    [SerializeField] private int baseValue;
+    [SerializeField] private List<StatModifier> modifiers;
 
     public int Value
     {
@@ -16,6 +16,16 @@ public class Stat
         {
             return CalculateFinalValue();
         }
+    }
+
+    public Stat()
+    {
+    }
+
+
+    public Stat(int value)
+    {
+        baseValue = value;
     }
 
     private int CalculateFinalValue()
