@@ -26,3 +26,8 @@ MonoBehaviour:
     stat: 2
     value: 10
     inTime: 0
+  cooldoown: 0
+  projectileGO: {fileID: 8071583376020780167, guid: 2b9f18081bba5df4aa4c0392641dba94, type: 3}
+  damage: 10
+  speed: 25
+  maxDistance: 10

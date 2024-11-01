@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Movement/Dash")]
+[CreateAssetMenu(menuName = "Skills/Movement/Dash/Dash")]
 public class Dash : MovementSkill
 {
     [SerializeField] int dashStrength;
@@ -8,8 +8,11 @@ public class Dash : MovementSkill
     [SerializeField] float dashCooldown;
     protected override void ActivateSkill(GameObject caster)
     {
-        PlayerController movement = caster.GetComponent<PlayerController>();
-        movement.StartCoroutine(movement.Dash(dashDuration, dashStrength));
+        if (StatCheck())
+        {
+            PlayerController movement = caster.GetComponent<PlayerController>();
+            movement.StartCoroutine(movement.Dash(dashDuration, dashStrength));
+        }
     }
 
     protected override void HoldActiveSkill(GameObject caster)

@@ -4,7 +4,7 @@ public class Character : MonoBehaviour
 {
     public static Character Instance;
 
-    #region Main Stats
+    #region Main Bar Stats
     [Space]
     [Header("Changeable Stats")]
     [SerializeField] ChangeableStat health = new ChangeableStat(100);
@@ -26,6 +26,9 @@ public class Character : MonoBehaviour
     [Space]
     [Header("Sub Stats")]
     [SerializeField] Stat speed;
+    [SerializeField] Stat healthRegen;
+    [SerializeField] Stat staminaRegen;
+    [SerializeField] Stat manaRegen;
     #endregion
 
     #region Skills
@@ -51,7 +54,6 @@ public class Character : MonoBehaviour
         health.currentValue = health.maxValue.Value;
         stamina.currentValue = stamina.maxValue.Value;
         mana.currentValue = mana.maxValue.Value;
-
     }
 
     public void DecreaseStatValue(SkillCost cost)

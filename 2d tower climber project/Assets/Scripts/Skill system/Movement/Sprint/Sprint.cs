@@ -1,13 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Movement/Sprint")]
+[CreateAssetMenu(menuName = "Skills/Movement/Sprint/Sprint")]
 public class Sprint : MovementSkill
 {
     [SerializeField] StatModifier modifier;
 
     protected override void ActivateSkill(GameObject caster)
     {
-        if (Character.Instance.GetStamina().currentValue > 0)
+        if (StatCheck())
         {
             caster.GetComponent<Character>().GetSpeed().AddModifier(modifier);
         }
@@ -15,8 +15,7 @@ public class Sprint : MovementSkill
     protected override void HoldActiveSkill(GameObject caster)
     {
         Character.Instance.DecreaseStatValue(cost);
-
-        if (Character.Instance.GetStamina().currentValue == 0)
+        if (!StatCheck())
         {
             caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
         }
@@ -26,6 +25,4 @@ public class Sprint : MovementSkill
     {
         caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
     }
-
-
 }

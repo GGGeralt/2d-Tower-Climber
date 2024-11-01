@@ -36,9 +36,9 @@ public class PlayerUI : MonoBehaviour
         staminaSlider.value = character.GetStamina().currentValue;
         manaSlider.value = character.GetMana().currentValue;
 
-        healthText.text = $"{character.GetHealth().currentValue}/{character.GetHealth().maxValue.Value}";
-        staminaText.text = $"{character.GetStamina().currentValue}/{character.GetStamina().maxValue.Value}";
-        manaText.text = $"{character.GetMana().currentValue}/{character.GetMana().maxValue.Value}";
+        healthText.text = $"{Mathf.Round(character.GetHealth().currentValue)}/{character.GetHealth().maxValue.Value}";
+        staminaText.text = $"{Mathf.Round(character.GetStamina().currentValue)}/{character.GetStamina().maxValue.Value}";
+        manaText.text = $"{Mathf.Round(character.GetMana().currentValue)}/{character.GetMana().maxValue.Value}";
 
     }
 }

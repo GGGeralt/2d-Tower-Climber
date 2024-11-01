@@ -525,7 +525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222405160}
   - component: {fileID: 222405161}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hexagon Flat-Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486087798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,10 +2271,10 @@ GameObject:
   - component: {fileID: 1784834300}
   - component: {fileID: 1784834303}
   - component: {fileID: 1784834301}
-  - component: {fileID: 1784834302}
-  m_Layer: 0
+  - component: {fileID: 1784834304}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2388,8 +2388,30 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1784834302
-BoxCollider2D:
+--- !u!114 &1784834303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784834295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8d1cae728cf534d9dc943d2507cb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastMovement: 0
+  canMove: 1
+  isDashing: 0
+  dashStrength: 0
+  isGrounded: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  movementKey: 304
+  airKey: 32
+--- !u!60 &1784834304
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2429,33 +2451,16 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.88}
-  m_EdgeRadius: 0
---- !u!114 &1784834303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784834295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8d1cae728cf534d9dc943d2507cb88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastMovement: 0
-  canMove: 1
-  isDashing: 0
-  dashStrength: 0
-  isGrounded: 0
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 0
-  attackKey: 316
-  movementKey: 304
-  airKey: 32
+  m_AutoTiling: 1
+  m_Points:
+    m_Paths:
+    - - {x: -0.25, y: 0.44}
+      - {x: -0.5, y: 0}
+      - {x: -0.25, y: -0.44}
+      - {x: 0.25, y: -0.44}
+      - {x: 0.5, y: 0}
+      - {x: 0.25, y: 0.44}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1846796822
 GameObject:
   m_ObjectHideFlags: 0

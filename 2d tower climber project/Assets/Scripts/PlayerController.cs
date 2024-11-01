@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode movementKey;
     [SerializeField] KeyCode airKey;
 
+    public float Horizontal { get => horizontal; }
+
 
     #region UnityFunctions
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
         rigid2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
     }
@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (horizontal > 0)
+        if (Horizontal > 0)
         {
             lastMovement = 1;
         }
-        else if (horizontal < 0)
+        else if (Horizontal < 0)
         {
             lastMovement = -1;
         }
@@ -94,13 +94,19 @@ public class PlayerController : MonoBehaviour
         {
             character.GetAirSkill().Deactivate?.Invoke(gameObject);
         }
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            character.GetMana().Increase(20);
+        }
     }
 
     private void Move()
     {
         if (canMove)
         {
-            rigid2d.velocity = new Vector2(horizontal * character.GetSpeed().Value, rigid2d.velocity.y);
+            rigid2d.velocity = new Vector2(Horizontal * character.GetSpeed().Value, rigid2d.velocity.y);
         }
         else if (isDashing)
         {
