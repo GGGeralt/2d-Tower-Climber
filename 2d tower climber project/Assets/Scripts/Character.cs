@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
     [SerializeField] ChangeableStat stamina = new ChangeableStat(100);
     [SerializeField] ChangeableStat mana = new ChangeableStat(100);
     #endregion
-
+    /*
     #region Main Stats
     [Space]
     [Header("Main Stats")]
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
     [SerializeField] Stat Mind;
     [SerializeField] Stat Soul;
     #endregion
-
+    */
     #region Sub Stats
     [Space]
     [Header("Sub Stats")]
@@ -56,12 +56,27 @@ public class Character : MonoBehaviour
         mana.currentValue = mana.maxValue.Value;
     }
 
+    private void Update()
+    {
+        if (health.isRegenerating)
+        {
+            health.Increase(healthRegen.Value * Time.deltaTime);
+        }
+        if (stamina.isRegenerating)
+        {
+            stamina.Increase(staminaRegen.Value * Time.deltaTime);
+        }
+        if (mana.isRegenerating)
+        {
+            mana.Increase(manaRegen.Value * Time.deltaTime);
+        }
+    }
     public void DecreaseStatValue(SkillCost cost)
     {
         float value = cost.value;
         if (cost.inTime == true)
         {
-            value = value * Time.deltaTime;
+            value *= Time.deltaTime;
         }
         switch (cost.stat)
         {

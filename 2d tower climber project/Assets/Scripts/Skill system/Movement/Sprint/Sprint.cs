@@ -9,20 +9,21 @@ public class Sprint : MovementSkill
     {
         if (StatCheck())
         {
+            Character.Instance.GetStamina().isRegenerating = false;
             caster.GetComponent<Character>().GetSpeed().AddModifier(modifier);
         }
     }
     protected override void HoldActiveSkill(GameObject caster)
     {
-        Character.Instance.DecreaseStatValue(cost);
-        if (!StatCheck())
+        if (StatCheck())
         {
-            caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
+            Character.Instance.DecreaseStatValue(cost);
         }
     }
 
     protected override void DeactivateSkill(GameObject caster)
     {
+        Character.Instance.GetStamina().isRegenerating = true;
         caster.GetComponent<Character>().GetSpeed().RemoveModifier(modifier);
     }
 }

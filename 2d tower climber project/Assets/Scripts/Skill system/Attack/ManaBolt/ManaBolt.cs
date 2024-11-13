@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(menuName = "Skills/Attack/ManaBolt/ManaBolt")]
 public class ManaBolt : AttackSkill
 {

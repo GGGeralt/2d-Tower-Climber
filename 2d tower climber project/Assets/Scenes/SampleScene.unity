@@ -2313,6 +2313,7 @@ MonoBehaviour:
       baseValue: 100
       modifiers: []
     currentValue: 100
+    isRegenerating: 1
     OnValueChanged:
       m_PersistentCalls:
         m_Calls: []
@@ -2322,6 +2323,7 @@ MonoBehaviour:
       baseValue: 100
       modifiers: []
     currentValue: 100
+    isRegenerating: 1
     OnValueChanged:
       m_PersistentCalls:
         m_Calls: []
@@ -2331,35 +2333,28 @@ MonoBehaviour:
       baseValue: 100
       modifiers: []
     currentValue: 100
+    isRegenerating: 1
     OnValueChanged:
       m_PersistentCalls:
         m_Calls: []
-  Strength:
-    finalValue: 0
-    baseValue: 10
-    modifiers: []
-  Dexterity:
-    finalValue: 0
-    baseValue: 10
-    modifiers: []
-  Constitution:
-    finalValue: 0
-    baseValue: 10
-    modifiers: []
-  Mind:
-    finalValue: 0
-    baseValue: 10
-    modifiers: []
-  Soul:
-    finalValue: 0
-    baseValue: 10
-    modifiers: []
   speed:
     finalValue: 0
     baseValue: 10
     modifiers: []
+  healthRegen:
+    finalValue: 0
+    baseValue: 5
+    modifiers: []
+  staminaRegen:
+    finalValue: 0
+    baseValue: 5
+    modifiers: []
+  manaRegen:
+    finalValue: 0
+    baseValue: 5
+    modifiers: []
   attackSkill: {fileID: 11400000, guid: ef3e5421892f79544a8a5fef4c1c3cbb, type: 2}
-  movementSkill: {fileID: 11400000, guid: 6e3a160f761c42340954fefee11a7086, type: 2}
+  movementSkill: {fileID: 11400000, guid: c4e04a5c24a47be4fb5776dc15959535, type: 2}
   airSkill: {fileID: 11400000, guid: e530b087badb1524ca8cf07c014a5bf5, type: 2}
 --- !u!50 &1784834301
 Rigidbody2D:
@@ -2407,7 +2402,7 @@ MonoBehaviour:
   isGrounded: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   movementKey: 304
   airKey: 32
 --- !u!60 &1784834304

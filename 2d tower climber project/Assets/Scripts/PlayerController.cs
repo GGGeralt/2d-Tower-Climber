@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2d;
     Character character;
 
-    float horizontal;
     [SerializeField] float lastMovement;
 
     [SerializeField] bool canMove = true;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode movementKey;
     [SerializeField] KeyCode airKey;
 
+    float horizontal;
     public float Horizontal { get => horizontal; }
 
 
@@ -118,10 +118,12 @@ public class PlayerController : MonoBehaviour
     {
         isDashing = true;
         canMove = false;
+        Character.Instance.GetStamina().isRegenerating = false;
 
         this.dashStrength = dashStrength;
         yield return new WaitForSeconds(dashDuration);
 
+        Character.Instance.GetStamina().isRegenerating = true;
         isDashing = false;
         canMove = true;
     }

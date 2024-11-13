@@ -25,7 +25,7 @@ public abstract class SkillBase : ScriptableObject
 
         if (cost.inTime)
         {
-            actualCost = 0;
+            actualCost = 0.001f;
         }
         else
         {
@@ -35,19 +35,19 @@ public abstract class SkillBase : ScriptableObject
         switch (cost.stat)
         {
             case StatEnum.Health:
-                if (Character.Instance.GetHealth().currentValue > actualCost)
+                if (Character.Instance.GetHealth().currentValue >= actualCost)
                 {
                     isGood = true;
                 }
                 break;
             case StatEnum.Stamina:
-                if (Character.Instance.GetStamina().currentValue > actualCost)
+                if (Character.Instance.GetStamina().currentValue >= actualCost)
                 {
                     isGood = true;
                 }
                 break;
             case StatEnum.Mana:
-                if (Character.Instance.GetMana().currentValue > actualCost)
+                if (Character.Instance.GetMana().currentValue >= actualCost)
                 {
                     isGood = true;
                 }
